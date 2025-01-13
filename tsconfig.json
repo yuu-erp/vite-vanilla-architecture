@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2023", // Modern JavaScript support
+    "module": "commonjs", // Use CommonJS module system
+    "lib": ["dom", "esnext"],
+
+    "outDir": "./dist", // Output directory for compiled files
+    "rootDir": "./src", // Root directory for source files
+    "allowJs": true, // Allow JavaScript files
+    "checkJs": true, // Type-check JavaScript files
+    "noEmit": false, // Allow compilation output
+    "baseUrl": "."
+  },
+  "include": ["src/**/*"], // Include all files in 'src'
+  "exclude": ["node_modules"] // Exclude node_modules folder
+}
