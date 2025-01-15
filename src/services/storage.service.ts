@@ -1,7 +1,21 @@
-import { StorageStrategy } from '../interfaces/storage-strategy.interface'
+import { IStorageService } from 'src/interface/storage.interface'
 
-export class MapStorageStrategy<T> implements StorageStrategy<T> {
+export class StorageService<T> implements IStorageService<T> {
+  private static instances: Map<string, StorageService<any>> = new Map()
   private storage = new Map<keyof T, T[keyof T]>()
+  private constructor(private readonly key: string) {
+    console.log('StorageService dependencies initialized...' + ' ' + key)
+  }
+
+  public static getInstance<T>(key: string): StorageService<T> {
+    const instanceKey = `${key}`
+
+    if (!this.instances.has(instanceKey)) {
+      this.instances.set(instanceKey, new StorageService<T>(key))
+    }
+
+    return this.instances.get(instanceKey) as StorageService<T>
+  }
 
   set<K extends keyof T>(key: K, value: T[K]): void {
     this.storage.set(key, value)

@@ -1,28 +1,39 @@
-import { DataNative, LayoutCalculation } from 'src/interface/app-config.interface'
-import { FetchDataModule } from 'src/modules/fetchDataService/fetch-data.module'
-import { StorageService } from 'src/modules/storageService/storage.service'
-import { LayoutCalculationService } from './services/layout-calculation.service'
+import { FetchDataModule } from './modules/fetchData/fetch-data.module'
+import { LayoutCalculationModule } from './modules/layoutCalculation/layout-calculation.module'
+import { StorageService } from './services/storage.service'
+import { SystemCoreService } from './services/system-core.service'
+import { DataNative, LayoutCalculation, Setting } from './types/data'
 
 export class AppModule {
+  private systemCoreService: SystemCoreService
+
   private storageServiceLayoutCalculation: StorageService<LayoutCalculation>
   private storageServiceDataNative: StorageService<DataNative>
+
+  private fetchDataModule: FetchDataModule
+
   constructor() {
     console.time('Time run application')
     console.log('AppModule dependencies initialized...')
-    this.Imports()
+    this.systemCoreService = SystemCoreService.getInstance()
+
+    this.storageServiceLayoutCalculation = StorageService.getInstance<LayoutCalculation>('layoutCalculation')
+    this.storageServiceDataNative = StorageService.getInstance<DataNative>('dataNative')
+    const layoutCalculationModule = new LayoutCalculationModule(this.storageServiceLayoutCalculation)
+    layoutCalculationModule.init()
+    this.fetchDataModule = new FetchDataModule(
+      this.systemCoreService,
+      this.storageServiceDataNative,
+      layoutCalculationModule
+    )
     console.timeEnd('Time run application')
   }
 
-  private Imports() {
-    this.storageServiceLayoutCalculation = StorageService.getInstance('map', 'layoutCalculation')
-    this.storageServiceDataNative = StorageService.getInstance('map', 'dataNative')
-    const layoutCalculationService = new LayoutCalculationService(this.storageServiceLayoutCalculation)
-    const fetchDataModule = new FetchDataModule(this.storageServiceDataNative)
-    layoutCalculationService.init()
-    fetchDataModule.fetchAllData()
-  }
-
-  init() {
-    console.log('Application initialized successfully.')
+  async init() {
+    try {
+      console.log('Application initialized successfully.')
+    } catch (error) {
+      console.error(error)
+    }
   }
 }

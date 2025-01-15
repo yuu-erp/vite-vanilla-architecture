@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2023", // Modern JavaScript support
-    "module": "commonjs", // Use CommonJS module system
-    "lib": ["dom", "esnext"],
+    "module": "esnext", // Use CommonJS module system
+    "moduleResolution": "node", // Resolve modules like Node.js
+    "lib": ["dom", "esnext", "WebWorker"],
 
     "outDir": "./dist", // Output directory for compiled files
     "rootDir": "./src", // Root directory for source files
@@ -11,6 +12,6 @@
     "noEmit": false, // Allow compilation output
     "baseUrl": "."
   },
-  "include": ["src/**/*"], // Include all files in 'src'
+  "include": ["src/**/*", "vite-env.d.ts"], // Include all files in 'src'
   "exclude": ["node_modules"] // Exclude node_modules folder
 }
