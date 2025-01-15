@@ -1,4 +1,4 @@
-import { IdGenerator } from 'src/interface/id-generator.interface'
+import { IdGenerator } from 'src/core/interfaces/id-generator.interface'
 
 export class SnowflakeID implements IdGenerator {
   private epoch: bigint

@@ -12,6 +12,6 @@
     "noEmit": false, // Allow compilation output
     "baseUrl": "."
   },
-  "include": ["src/**/*", "vite-env.d.ts"], // Include all files in 'src'
+  "include": ["src/**/*.ts", "vite-env.d.ts"], // Include all files in 'src'
   "exclude": ["node_modules"] // Exclude node_modules folder
 }
