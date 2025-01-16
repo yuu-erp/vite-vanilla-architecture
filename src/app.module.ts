@@ -1,21 +1,22 @@
-import { IOCContainer } from './ioc-container' // Giả sử bạn đã có IOCContainer
-
-// Đây là class quản lý các module
-export class AppModule {
-  private container: IOCContainer
-
+import { Module } from './core/domain-base/repositories/module.repository'
+export class AppModule extends Module {
   constructor() {
-    this.container = new IOCContainer()
+    super()
+    console.time('Time run application')
+    console.log('AppModule dependencies initialized...')
     this.configureDependencies()
+    console.timeEnd('Time run application')
   }
 
-  // Phương thức đăng ký các phụ thuộc vào container
-  private configureDependencies(): void {
-    // Đăng ký dịch vụ UserService dưới dạng singleton
+  // Đổi phạm vi của configureDependencies thành public
+  public configureDependencies(): void {
+    // Đăng ký MapStorageService
   }
 
   // Phương thức khởi tạo ứng dụng
-  public init(): void {
-    // Giải quyết các dịch vụ khi cần
+  public async init(): Promise<void> {
+    try {
+      console.log('Application initialized successfully.')
+    } catch (error) {}
   }
 }

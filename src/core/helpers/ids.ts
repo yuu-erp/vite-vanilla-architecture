@@ -1,5 +1,3 @@
-import { GenerateRandomString } from './generateRandomString'
-
 /**
  * You just increase the length if necessary to improve performance
  * Attention to the security(id is key)
@@ -17,14 +15,20 @@ import { GenerateRandomString } from './generateRandomString'
  *
  *  See @https://unkey.dev/blog/uuid-ux
  */
+
 export const DEFAULT_PREFIX_ID_LENGTH = 22
 export const ENTITY_ID_LENGTH = 25
+export const characters = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 export function generatePrefixId(prefix = 'tu', length = DEFAULT_PREFIX_ID_LENGTH): string {
-  const generateRandomString = new GenerateRandomString(length)
-  return `${prefix}_${generateRandomString.generateId()}`
+  return `${prefix}_${generateId(length)}`
 }
 
-export function generateUserId(length = DEFAULT_PREFIX_ID_LENGTH) {
-  return generatePrefixId('u', length)
+export function generateId(length: number): string {
+  let result = ''
+  const charactersLength = characters.length
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
 }
