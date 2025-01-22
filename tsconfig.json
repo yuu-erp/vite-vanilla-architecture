@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2023", // Modern JavaScript support
-    "module": "esnext", // Use CommonJS module system
-    "moduleResolution": "node", // Resolve modules like Node.js
-    "lib": ["dom", "esnext", "WebWorker"],
-
-    "outDir": "./dist", // Output directory for compiled files
-    "rootDir": "./src", // Root directory for source files
-    "allowJs": true, // Allow JavaScript files
-    "checkJs": true, // Type-check JavaScript files
-    "noEmit": false, // Allow compilation output
+    "target": "ES6", // Hoặc ES5, nhưng ES6 hoặc cao hơn là cần thiết cho decorators
+    "module": "nodenext", // Sử dụng ES Modules
+    "experimentalDecorators": true, // Bật decorator
+    "emitDecoratorMetadata": true, // Bật metadata reflection
+    "strict": true, // Bật strict mode để giúp mã nguồn an toàn hơn
+    "esModuleInterop": true, // Đảm bảo khả năng tương thích giữa ES modules và CommonJS
+    "skipLibCheck": true, // (Tùy chọn) Giúp tăng tốc quá trình biên dịch nếu không cần kiểm tra thư viện
     "baseUrl": "."
   },
-  "include": ["src/**/*.ts", "vite-env.d.ts"], // Include all files in 'src'
-  "exclude": ["node_modules"] // Exclude node_modules folder
+  "include": ["src/**/*.ts"]
 }

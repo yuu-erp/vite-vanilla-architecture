@@ -1,0 +1,30 @@
+src/
+├── core/
+│   ├── domain/
+│   │   ├── entities/
+│   │   │   ├── User.ts                # Các thực thể (Entities)
+│   │   ├── use-cases/
+│   │   │   ├── GetUserDetails.ts      # Các use case
+│   │   └── interfaces/
+│    │   │   ├── IUserService.ts        # Interface định nghĩa UserService
+│   ├── services/
+│   │   ├── UserService.ts         # Các dịch vụ (chứa logic nghiệp vụ)
+│   ├── infrastructure/
+│   │   ├── container.ts           # Cấu hình IoC Container
+│   │   ├── bindings.ts            # Cấu hình các binding cho Inversify
+├── modules/
+│   ├── user/                         # Module User độc lập
+│   │   ├── entities/                 # Entity của module
+│   │   │   └── User.ts               # Entity User
+│   │   ├── use-cases/                # Use cases của module
+│   │   │   └── GetUserDetails.ts     # Use case: lấy thông tin người dùng
+│   │   ├── services/                 # Service xử lý logic nghiệp vụ của User
+│   │   │   └── UserService.ts        # User Service
+│   │   ├── controllers/              # Controller cho User (API hoặc UI)
+│   │   │   └── UserController.ts     # Controller xử lý yêu cầu User
+│   │   └── interfaces/               # Interface cho User Service
+│   │       └── IUserService.ts       # Interface định nghĩa User Service
+├── app.module.ts                 # Cấu hình ứng dụng
+├── main.ts                       # Entry point của ứng dụng
+├── tsconfig.json                 # Cấu hình TypeScript
+└── vite.config.ts                # Cấu hình Vite
